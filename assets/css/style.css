@@ -1,0 +1,321 @@
+/* ==========================================================================
+   1. RESET & VARIABEL UTAMA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+}
+
+body {
+    background-color: #0f172a; /* Latar belakang gelap pekat yang elegan (Slate 900) */
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 📦 WADAH UTAMA DASBOR */
+.wadah-financeflow {
+    background-color: #1e293b; /* Abu-abu gelap (Slate 800) */
+    width: 100%;
+    max-width: 480px;
+    border-radius: 24px;
+    padding: 30px 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid #334155;
+}
+
+/* 📑 HEADER */
+header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+header p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* ==========================================================================
+   2. DASBOR KARTU SALDO (ALA M-BANKING NEON)
+   ========================================================================== */
+.dasbor-saldo {
+    margin-bottom: 30px;
+}
+
+.kartu-saldo {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); /* Biru gradasi neon mewah */
+    padding: 24px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.kartu-saldo h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+#total-saldo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease; /* Transisi halus saat berubah jadi merah jika minus */
+}
+
+/* DETAIL ARUS KAS (MASUK & KELUAR) */
+.detail-arus-kas {
+    display: flex;
+    gap: 12px;
+}
+
+.kotak-arus {
+    flex: 1;
+    background-color: #0f172a;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid #334155;
+}
+
+.kotak-arus span {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.kotak-arus p {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.kotak-arus.masuk p {
+    color: #10b981; /* Hijau Emerald untuk uang masuk */
+}
+
+.kotak-arus.keluar p {
+    color: #f43f5e; /* Merah Rose untuk uang keluar */
+}
+
+/* ==========================================================================
+   3. FORMULIR INPUT TRANSAKSI
+   ========================================================================== */
+.area-form {
+    margin-bottom: 30px;
+}
+
+.area-form h3, .header-mutasi h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #cbd5e1;
+}
+
+#form-transaksi {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.grup-input input, .grup-input select {
+    width: 100%;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.grup-input input:focus, .grup-input select:focus {
+    border-color: #3b82f6; /* Menyala biru saat diklik inputnya */
+}
+
+.btn-simpan {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-simpan:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   4. FILTER & AREA DAFTAR MUTASI
+   ========================================================================== */
+.header-mutasi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.header-mutasi h3 {
+    margin-bottom: 0;
+}
+
+.tombol-filter {
+    display: flex;
+    gap: 6px;
+    background-color: #0f172a;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+}
+
+.btn-filter {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-filter.aktif {
+    background-color: #1e293b;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* LIST ITEMS MUTASI */
+.list-mutasi {
+    list-style: none;
+    max-height: 220px;
+    overflow-y: auto; /* Memunculkan scrollbar internal jika riwayat sangat panjang */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+/* Gaya Scrollbar Minimalis */
+.list-mutasi::-webkit-scrollbar {
+    width: 5px;
+}
+.list-mutasi::-webkit-scrollbar-thumb {
+    background-color: #334155;
+    border-radius: 10px;
+}
+
+.item-mutasi {
+    background-color: #0f172a;
+    padding: 14px 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #64748b; /* Warna netral default */
+    animation: slideIn 0.3s ease;
+}
+
+/* Pembeda warna list mutasi berdasarkan kondisi masuk/keluar */
+.item-mutasi.pemasukan {
+    border-left-color: #10b981;
+}
+
+.item-mutasi.pengeluaran {
+    border-left-color: #f43f5e;
+}
+
+.info-mutasi {
+    display: flex;
+    flex-direction: column;
+}
+
+.deskripsi-item {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.angka-mutasi {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nominal-item {
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.item-mutasi.pemasukan .nominal-item {
+    color: #10b981;
+}
+
+.item-mutasi.pengeluaran .nominal-item {
+    color: #f43f5e;
+}
+
+/* TOMBOL HAPUS (❌) */
+.btn-hapus-transaksi {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    opacity: 0.4;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-hapus-transaksi:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.pesan-kosong {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85rem;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+/* ANIMASI KARTU MASUK */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 📅 TULISAN TANGGAL & BULAN MUTASI */
+.tanggal-item {
+    font-size: 0.75rem;
+    color: #64748b; /* Abu-abu redup agar estetik */
+    margin-top: 2px;
+}

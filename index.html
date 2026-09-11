@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Dompet Digital Personal</title>
+    <!-- Hubungkan ke CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="wadah-financeflow">
+        <!-- 📑 HEADER: Identitas Aplikasi -->
+        <header>
+            <h1>📱 FinanceFlow</h1>
+            <p>Catatan Keuangan & Mutasi Rekening Digital</p>
+        </header>
+
+        <!-- 📊 SECTION 1: DASBOR SALDO UTAMA (Ala M-Banking) -->
+        <section class="dasbor-saldo">
+            <div class="kartu-saldo">
+                <h3>Sisa Saldo Anda</h3>
+                <!-- ID ini akan ditembak oleh JS untuk kalkulasi matematika -->
+                <p id="total-saldo">Rp 0</p>
+            </div>
+            <div class="detail-arus-kas">
+                <div class="kotak-arus masuk">
+                    <span>Uang Masuk</span>
+                    <p id="total-pemasukan">Rp 0</p>
+                </div>
+                <div class="kotak-arus keluar">
+                    <span>Uang Keluar</span>
+                    <p id="total-pengeluaran">Rp 0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 📝 SECTION 2: FORMULIR INPUT TRANSAKSI -->
+        <section class="area-form">
+            <h3>Catat Transaksi Baru</h3>
+            <form id="form-transaksi" onsubmit="tambahTransaksi(event)">
+                <div class="grup-input">
+                    <input type="text" id="input-deskripsi" placeholder="Contoh: Gaji Bulanan, Beli Kopi" required>
+                </div>
+                <div class="grup-input">
+                    <input type="number" id="input-jumlah" placeholder="Jumlah (Rp). Contoh: 50000" min="1" required>
+                </div>
+                <div class="grup-input">
+                    <select id="input-jenis" required>
+                        <option value="" disabled selected>Pilih Jenis Transaksi</option>
+                        <option value="pemasukan">🟢 Pemasukan (Uang Masuk)</option>
+                        <option value="pengeluaran">🔴 Pengeluaran (Uang Keluar)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-simpan">💾 Catat Transaksi</button>
+            </form>
+        </section>
+
+        <!-- 🔎 SECTION 3: FILTER & RIWAYAT MUTASI -->
+        <section class="area-mutasi">
+            <div class="header-mutasi">
+                <h3>Riwayat Mutasi</h3>
+                <!-- Tombol filter pintar untuk menyaring data array -->
+                <div class="tombol-filter">
+                    <button class="btn-filter aktif" onclick="filterMutasi('semua', event)">Semua</button>
+                    <button class="btn-filter" onclick="filterMutasi('pemasukan', event)">Masuk</button>
+                    <button class="btn-filter" onclick="filterMutasi('pengeluaran', event)">Keluar</button>
+                </div>
+            </div>
+            
+            <!-- Tempat daftar transaksi akan dirender secara dinamis oleh JS -->
+            <ul id="daftar-transaksi" class="list-mutasi">
+                <!-- Data dummy/kosong akan muncul jika belum ada catatan -->
+            </ul>
+        </section>
+    </div>
+
+    <!-- Hubungkan ke JavaScript -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
